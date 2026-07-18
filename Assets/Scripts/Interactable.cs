@@ -1,19 +1,24 @@
 using UnityEngine;
 
-public class Interactable : MonoBehaviour
+namespace babbarversestudios
 {
-}
+    public class Interactable : MonoBehaviour
+    {
+    }
 
-//responsible for interactions
-public interface IInteractable
-{
-    void Interact();
-}
+    //responsible for interactions
+    public interface IInteractable
+    {
+        void Interact();
 
-public enum InteractableState
-{
-    Closed,
-    Opening,
-    Closing,
-    Open
+        System.Collections.IEnumerator WaitForCertainDuration(InteractableState setState);
+    }
+
+    public enum InteractableState
+    {
+        Closed,
+        Opening,
+        Closing,
+        Open
+    }
 }

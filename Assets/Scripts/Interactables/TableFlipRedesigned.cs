@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using UnityEngine;
+using babbarversestudios;
 
 public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 
@@ -11,7 +12,7 @@ public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 	void Start () => 
 		currentState = InteractableState.Closed;
 
-	IEnumerator WaitForCertainDuration(InteractableState setState)
+	public IEnumerator WaitForCertainDuration(InteractableState setState)
 	{
 		yield return new WaitForSeconds(.5f);
 		currentState = setState;
@@ -23,13 +24,13 @@ public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 		switch (currentState)
 		{
 			case InteractableState.Closed:
-				FlipL.Play(DecideAnimation(toClose: false));
+                FlipL.Play(DecideAnimation(toClose: false));
 				currentState = InteractableState.Opening;
 				StartCoroutine(WaitForCertainDuration(InteractableState.Open));
 				break;
 
 			case InteractableState.Open:
-				FlipL.Play(DecideAnimation(toClose: true));
+                FlipL.Play(DecideAnimation(toClose: true));
 				currentState = InteractableState.Closing;
                 StartCoroutine(WaitForCertainDuration(InteractableState.Closed));
                 break;

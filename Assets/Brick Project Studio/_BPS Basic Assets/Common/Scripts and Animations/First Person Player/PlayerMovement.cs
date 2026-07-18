@@ -1,9 +1,7 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
+using babbarversestudios;
 
 namespace SojaExiles
-
 {
     public class PlayerMovement : MonoBehaviour
     {
@@ -12,6 +10,7 @@ namespace SojaExiles
 
         public float speed = 5f;
         public float gravity = -15f;
+        public float interactionDistance = 3f;
 
         Vector3 velocity;
 
@@ -32,6 +31,23 @@ namespace SojaExiles
 
             controller.Move(velocity * Time.deltaTime);
 
+
+            if (Input.GetKeyDown(KeyCode.E))
+                InteractionPrompt();
+
+        }
+
+        private void InteractionPrompt()
+        {
+            if (Physics.Raycast(transform.position + new Vector3(0, 1.25f, 0), transform.forward, out RaycastHit hit, interactionDistance/*, LayerMask.GetMask("Interactables")*/))
+            {
+                hit.collider.GetComponentInChildren<IInteractable>()?.Interact();
+            }
+
+            if (Physics.Raycast(transform.position, transform.forward, out RaycastHit hit2, interactionDistance/*, LayerMask.GetMask("Interactables")*/))
+            {
+                hit2.collider.GetComponentInChildren<IInteractable>()?.Interact();
+            }
         }
     }
 }
