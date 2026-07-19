@@ -11,7 +11,7 @@ namespace babbarversestudios
     {
         void Interact();
 
-        System.Collections.IEnumerator WaitForCertainDuration(InteractableState setState);
+        System.Collections.IEnumerator WaitForCertainDuration(InteractableState setState = InteractableState.None);
     }
 
     public enum InteractableState
@@ -19,6 +19,13 @@ namespace babbarversestudios
         Closed,
         Opening,
         Closing,
-        Open
+        Open,
+        None
+    }
+
+    public enum ComputerInteractables
+    {
+        Box,
+        Table
     }
 }
