@@ -10,8 +10,6 @@ namespace babbarversestudios
     public interface IInteractable
     {
         void Interact();
-
-        System.Collections.IEnumerator WaitForCertainDuration(InteractableState setState = InteractableState.None);
     }
 
     public enum InteractableState
@@ -27,5 +25,13 @@ namespace babbarversestudios
     {
         Box,
         Table
+    }
+
+    public enum DrawState
+    {
+        Pull,
+        Push,
+        Open, 
+        Closed
     }
 }
