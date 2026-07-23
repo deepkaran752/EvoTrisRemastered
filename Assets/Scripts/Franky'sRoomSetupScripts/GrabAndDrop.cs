@@ -1,5 +1,4 @@
 using babbarversestudios;
-using System.Collections;
 using UnityEngine;
 
 public class GrabAndDrop : MonoBehaviour, IInteractable
@@ -11,22 +10,40 @@ public class GrabAndDrop : MonoBehaviour, IInteractable
     private void Start() =>
         currentInteractableState = ComputerInteractables.Box;
 
+    private event System.Action PartSet;
+    int count = 0;
+
+    private void OnEnable()
+    {
+        PartSet += OnPartSet;
+    }
+
+    private void OnDestroy()
+    {
+        PartSet -= OnPartSet;
+    }
+
     public void Interact()
     {
         switch (currentInteractableState)
         {
             case ComputerInteractables.Box:
                 Debug.Log("[DK LOG] -> setting up the monitor on computer table");
-                transform.position = Setup.SetupPartOnTable(currentPart).position;
-                transform.rotation = Setup.SetupPartOnTable(currentPart).rotation;
-                StartCoroutine(WaitForCertainDuration(InteractableState.None));
+                Transform value = Setup.SetupPartOnTable(currentPart, out count);
+                transform.position = value.position;
+                transform.rotation = value.rotation;
+                CoroutineUtility.InvokeAfter(
+                    () => {
+                        currentInteractableState = ComputerInteractables.Table;
+                        PartSet?.Invoke();
+                    }, .5f);
                 break;
         }
     }
 
-    public IEnumerator WaitForCertainDuration(InteractableState setState)
+    private void OnPartSet()
     {
-        yield return new WaitForSeconds(.5f);
-        currentInteractableState = ComputerInteractables.Table;
+        if(count >= 5)
+            Setup.TurnOnMonitor?.Invoke();
     }
 }

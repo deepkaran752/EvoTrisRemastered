@@ -19,8 +19,25 @@ public class ComputerSetup : MonoBehaviour
     [SerializeField] Transform SpeakerLeftPosition;
     [SerializeField] Transform SpeakerRightPosition;
 
-    public Transform SetupPartOnTable(ComputerParts part)
+    [Header("For Monitor")]
+    [SerializeField] GameObject TurnedOffScreen;
+    [SerializeField] GameObject TurnedOnScreen;
+
+    private int count = 0;
+
+    #region Unity Life Cycle + Subs
+    public System.Action TurnOnMonitor;
+    private void OnEnable() =>
+        TurnOnMonitor += MonitorOn;
+
+    private void OnDestroy() =>
+        TurnOnMonitor -= MonitorOn;
+
+    #endregion
+
+    public Transform SetupPartOnTable(ComputerParts part, out int count)
     {
+        count = this.count++;
         return part switch
         {
             ComputerParts.Monitor => MonitorPosition,
@@ -32,6 +49,9 @@ public class ComputerSetup : MonoBehaviour
             _ => MonitorPosition
         };
     }
+
+    public void MonitorOn() =>
+        TurnedOffScreen.SetActive(false);
     
 }
 

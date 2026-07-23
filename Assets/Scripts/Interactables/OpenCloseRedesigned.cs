@@ -10,12 +10,6 @@ public class OpenCloseRedesigned : MonoBehaviour, IInteractable
     void Start() =>
         currentState = InteractableState.Closed;
 
-    public IEnumerator WaitForCertainDuration(InteractableState setState)
-    {
-        yield return new WaitForSeconds(.5f);
-        currentState = setState;
-    }
-
     public void Interact()
     {
         Debug.Log("[DK LOG] -> trying to interact with this object");
@@ -24,13 +18,19 @@ public class OpenCloseRedesigned : MonoBehaviour, IInteractable
             case InteractableState.Closed:
                 openandclose.Play("Opening");
                 currentState = InteractableState.Opening;
-                StartCoroutine(WaitForCertainDuration(InteractableState.Open));
+                CoroutineUtility.InvokeAfter( 
+                    () => {
+                        currentState = InteractableState.Open;
+                    }, .5f);
                 break;
 
             case InteractableState.Open:
                 openandclose.Play("Closing");
                 currentState = InteractableState.Closing;
-                StartCoroutine(WaitForCertainDuration(InteractableState.Closed));
+                CoroutineUtility.InvokeAfter(
+                    () => {
+                        currentState = InteractableState.Closed;
+                    }, .5f);
                 break;
 
             case InteractableState.Opening:

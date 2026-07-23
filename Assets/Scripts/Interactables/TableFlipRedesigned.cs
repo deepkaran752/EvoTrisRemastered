@@ -12,12 +12,6 @@ public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 	void Start () => 
 		currentState = InteractableState.Closed;
 
-	public IEnumerator WaitForCertainDuration(InteractableState setState)
-	{
-		yield return new WaitForSeconds(.5f);
-		currentState = setState;
-	}
-
     public void Interact()
     {
 		Debug.Log("[DK LOG] -> trying to interact with this object");
@@ -26,13 +20,19 @@ public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 			case InteractableState.Closed:
                 FlipL.Play(DecideAnimation(toClose: false));
 				currentState = InteractableState.Opening;
-				StartCoroutine(WaitForCertainDuration(InteractableState.Open));
+                CoroutineUtility.InvokeAfter(
+                    () => {
+                        currentState = InteractableState.Open;
+                    }, .5f);
 				break;
 
 			case InteractableState.Open:
                 FlipL.Play(DecideAnimation(toClose: true));
 				currentState = InteractableState.Closing;
-                StartCoroutine(WaitForCertainDuration(InteractableState.Closed));
+                CoroutineUtility.InvokeAfter(
+                    () => {
+                        currentState = InteractableState.Closed;
+                    }, .5f);
                 break;
 
 			case InteractableState.Opening:
