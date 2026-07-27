@@ -28,10 +28,10 @@ public class ComputerSetup : MonoBehaviour
     #region Unity Life Cycle + Subs
     public System.Action TurnOnMonitor;
     private void OnEnable() =>
-        TurnOnMonitor += MonitorOn;
+        TurnOnMonitor += SetupMonitorComplete;
 
     private void OnDestroy() =>
-        TurnOnMonitor -= MonitorOn;
+        TurnOnMonitor -= SetupMonitorComplete;
 
     #endregion
 
@@ -50,8 +50,11 @@ public class ComputerSetup : MonoBehaviour
         };
     }
 
-    public void MonitorOn() =>
+    public void SetupMonitorComplete()
+    {
         TurnedOffScreen.SetActive(false);
+        GameManager.Instance.CurrentObjectiveDone?.Invoke();
+    }
     
 }
 
