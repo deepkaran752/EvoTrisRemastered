@@ -1,15 +1,17 @@
+using System;
 using UnityEngine;
 
 namespace babbarversestudios
 {
-    public class Interactable : MonoBehaviour
-    {
-    }
-
     //responsible for interactions
     public interface IInteractable
     {
-        void Interact();
+        void Interact(GameObject whoFired = null);
+    }
+    
+    public interface ICarry
+    {
+        void Carry(PlayerCarry playerCarry);
     }
 
     public enum InteractableState
@@ -33,5 +35,13 @@ namespace babbarversestudios
         Push,
         Open, 
         Closed
+    }
+
+    public enum CarryState
+    {
+        OnFloor,
+        Picking,
+        Carried,
+        Placing
     }
 }

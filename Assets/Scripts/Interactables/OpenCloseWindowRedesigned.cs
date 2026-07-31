@@ -10,7 +10,7 @@ public class OpenCloseWindowRedesigned : MonoBehaviour, IInteractable
     void Start() =>
         currentState = InteractableState.Closed;
 
-    public void Interact()
+    public void Interact(GameObject whoFired = null)
     {
         Debug.Log("[DK LOG] -> trying to interact with this object");
         switch (currentState)

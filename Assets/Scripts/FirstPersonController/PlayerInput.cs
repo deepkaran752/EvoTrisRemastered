@@ -8,6 +8,7 @@ namespace babbarversestudios
         #region Serialize Fields
         [SerializeField] InputActionAsset InputAction;
         [SerializeField] Camera mCamera;
+        PlayerCarry playerCarry;
         #endregion
 
         #region InputActions
@@ -54,7 +55,8 @@ namespace babbarversestudios
             moveAction = InputSystem.actions.FindAction("Move");
             lookAction = InputSystem.actions.FindAction("Look");
             interactAction = InputSystem.actions.FindAction("Interact");
-            mController = GetComponent<CharacterController>();
+            mController = this.GetComponent<CharacterController>();
+            playerCarry = this.GetComponent<PlayerCarry>();
         }
 
         private void Update()
@@ -101,10 +103,16 @@ namespace babbarversestudios
         #region Interact
         private void Interact(InputAction.CallbackContext context)
         {
+            //if the player is carrying something, drop it first before interacting.
+            if (playerCarry.IsCarrying)
+            {
+                playerCarry.Drop();
+                return;
+            }
 
             if(Physics.Raycast(mCamera.transform.position, mCamera.transform.forward, out RaycastHit hit, interactionDistance))
             {
-                hit.collider.GetComponentInChildren<IInteractable>()?.Interact();
+                hit.collider.GetComponentInChildren<IInteractable>()?.Interact(gameObject);
             }
         }
         #endregion

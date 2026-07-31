@@ -9,10 +9,10 @@ public class TableFlipRedesigned: MonoBehaviour, IInteractable{
 
 	private InteractableState currentState;
 
-	void Start () => 
+	void Start () =>
 		currentState = InteractableState.Closed;
 
-    public void Interact()
+    public void Interact(GameObject whoFired = null)
     {
 		Debug.Log("[DK LOG] -> trying to interact with this object");
 		switch (currentState)

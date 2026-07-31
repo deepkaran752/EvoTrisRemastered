@@ -23,7 +23,7 @@ public class GrabAndDrop : MonoBehaviour, IInteractable
         PartSet -= OnPartSet;
     }
 
-    public void Interact()
+    public void Interact(GameObject whoFired = null)
     {
         switch (currentInteractableState)
         {

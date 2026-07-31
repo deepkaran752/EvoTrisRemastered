@@ -29,12 +29,39 @@ public class CoroutineUtility : MonoBehaviour
         Instance.StartCoroutine(Instance.WaitRoutine(callback, delay));
     }
 
+    public static void InvokeWhen(Action callback = null, Func<bool> condition = null)
+    {
+        Instance.StartCoroutine(Instance.WaitUntill(callback, condition));
+    }
+
+    public static void While(Action callback, Func<bool> condition)
+    {
+        Instance.StartCoroutine(Instance.WhileRoutine(callback, condition));
+    }
+
+    private IEnumerator WhileRoutine(Action callback, Func<bool> condition)
+    {
+        while (condition())
+        {
+            callback?.Invoke();
+            yield return null;
+        }
+    }
+
     private IEnumerator WaitRoutine(
         Action callback,
         float delay)
     {
         yield return new WaitForSeconds(delay); //ingame seconds 
 
+        callback?.Invoke();
+    }
+
+    private IEnumerator WaitUntill(
+        Action callback, 
+        Func <bool> condition)
+    {
+        yield return new WaitUntil(condition);
         callback?.Invoke();
     }
 

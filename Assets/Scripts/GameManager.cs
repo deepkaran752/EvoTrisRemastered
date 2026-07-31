@@ -5,6 +5,7 @@ public class GameManager : MonoBehaviour
 {
     #region References
     private ObjectiveManager objectiveManager;
+    public ComputerSetup computerSetup; //required for some stuff
     #endregion
     #region Singleton
     public static GameManager Instance;
