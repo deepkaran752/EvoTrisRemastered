@@ -14,5 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   chapter: 0
   objectives:
+  - {fileID: 11400000, guid: d97a55fe3c5d6844b9ad3f5f5f7c0cef, type: 2}
   - {fileID: 11400000, guid: 9b59e58a88983a64ebf6123301df54ab, type: 2}
   - {fileID: 11400000, guid: aae347ca80e473a44b38b45ce68d42c2, type: 2}
