@@ -11,7 +11,7 @@ public class WelcomeHome : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             IsPlayerEntered = true;
-            GameManager.Instance.CurrentObjectiveDone();
+            GameManager.Instance.CurrentObjectiveDone?.Invoke();
         }
     }
 }

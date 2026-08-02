@@ -7,7 +7,6 @@ public class PlayerCarry : MonoBehaviour
     private float throwSpeed = 2f;
 
     public bool IsCarrying => carriedObj != null;
-
     public void CarryObject(GrabObject gObj)
     {
         carriedObj = gObj;
@@ -35,5 +34,24 @@ public class PlayerCarry : MonoBehaviour
         );
     }
 
+    public void Drop(Transform destinationPosition)
+    {
+        if (carriedObj == null)
+            return;
 
+        carriedObj.transform.SetParent(null);
+        GrabObject obj = carriedObj;
+        carriedObj = null;
+
+        CoroutineUtility.InvokeAfter(
+            () =>
+            {
+                obj.transform.position = destinationPosition.position;
+                obj.transform.rotation = Quaternion.identity;
+                obj.GetSetCarryState = babbarversestudios.CarryState.Carried;
+            },
+            0.5f
+        );
+
+    }
 }

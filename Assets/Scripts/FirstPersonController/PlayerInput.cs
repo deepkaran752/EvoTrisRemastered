@@ -30,8 +30,8 @@ namespace babbarversestudios
         #endregion
 
         #region readonly floats fields
-        private readonly float walkSpeed = 5f;
-        private readonly float rotateSpeed = 5f;
+        private readonly float walkSpeed = 3.8f;
+        private readonly float rotateSpeed = 8.8f;
         private readonly float interactionDistance = 3f;
         private readonly float gravity = -1f;
         private float xRotation = 0f;
