@@ -15,20 +15,18 @@ public class PlayerSittingState : PlayerState
     public override void Enter()
     {
         //Cannot move, only rotate
+        player.gameObject.transform.position = whereToSit.position + new Vector3(0f, 0f, 0f);
         Debug.Log("[DK LOG] -> entered the sitting state");
     }
 
     public override void Exit()
     {
         //can move again
-        Debug.Log("[DK LOG] -> exited the free state");
+        Debug.Log("[DK LOG] -> exited the sitting state");
     }
 
     public override void Execute()
     {
         player.GetComponent<PlayerInput>().Rotating();
-
-        //executes the part
-        player.gameObject.transform.position = whereToSit.position + new Vector3(0f, 0f, 0f);
     }
 }
