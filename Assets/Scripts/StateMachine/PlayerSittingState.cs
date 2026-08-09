@@ -6,6 +6,10 @@ public class PlayerSittingState : PlayerState
     public override States State => States.Sitting;
     private Transform whereToSit;
 
+    //camera zoom in zoom out values (field of view)
+    private float zoomedOutValue = 60f;
+    private float zoomedInValue = 40f;
+
     public PlayerSittingState(Player player, Transform transform = null)
         : base(player)
     {
@@ -14,8 +18,9 @@ public class PlayerSittingState : PlayerState
 
     public override void Enter()
     {
-        //Cannot move, only rotate
+        //Cannot move and rotate
         player.gameObject.transform.position = whereToSit.position + new Vector3(0f, 0f, 0f);
+        player.GetComponent<PlayerInput>().ChangeFieldOfView(zoomedInValue); //changing for better apps vis
         Debug.Log("[DK LOG] -> entered the sitting state");
     }
 
@@ -23,6 +28,7 @@ public class PlayerSittingState : PlayerState
     {
         //can move again
         Debug.Log("[DK LOG] -> exited the sitting state");
+        player.GetComponent<PlayerInput>().ChangeFieldOfView(zoomedOutValue); //changing to the default one.
     }
 
     public override void Execute()

@@ -108,6 +108,10 @@ namespace babbarversestudios
             transform.Rotate(0, rotationAmount, 0);
         }
         #endregion
+        #region CameraTweaks
+        public void ChangeFieldOfView(float value) =>
+            mCamera.fieldOfView = value;
+        #endregion
         #region Interact
         public void Interact(InputAction.CallbackContext context)
         {

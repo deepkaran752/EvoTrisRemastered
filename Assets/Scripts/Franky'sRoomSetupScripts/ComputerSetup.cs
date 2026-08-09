@@ -53,6 +53,7 @@ public class ComputerSetup : MonoBehaviour
     public void SetupMonitorComplete()
     {
         TurnedOffScreen.SetActive(false);
+        TurnedOnScreen.SetActive(true);
         GameManager.Instance.CurrentObjectiveDone?.Invoke();
     }
     
