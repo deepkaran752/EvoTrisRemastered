@@ -7,8 +7,8 @@ public class PlayerSittingState : PlayerState
     private Transform whereToSit;
 
     //camera zoom in zoom out values (field of view)
-    private float zoomedOutValue = 60f;
-    private float zoomedInValue = 40f;
+    private readonly float zoomedOutValue = 60f;
+    private readonly float zoomedInValue = 40f;
 
     public PlayerSittingState(Player player, Transform transform = null)
         : base(player)
