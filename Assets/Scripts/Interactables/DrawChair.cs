@@ -11,6 +11,12 @@ public class DrawChair : MonoBehaviour, IInteractable
 
     public void Interact(GameObject whoFired = null)
     {
+        var player =  
+            whoFired.GetComponent<Player>();
+
+        if (player == null)
+            return;
+
         Debug.Log("[DK LOG] -> trying to interact with this object");
         switch (currentState)
         {
@@ -25,13 +31,9 @@ public class DrawChair : MonoBehaviour, IInteractable
                 break;
 
             case DrawState.Open:
-                chair.Play("PushChaire");
-                currentState = DrawState.Push;
-                CoroutineUtility.InvokeAfter(
-                    () =>
-                    {
-                        currentState = DrawState.Closed;
-                    }, .5f);
+                if (player.IsInState(States.Free))
+                    HandlePlayerSitting(player);
+                else HandleChairPushing();
                 break;
 
             case DrawState.Pull:
@@ -39,5 +41,21 @@ public class DrawChair : MonoBehaviour, IInteractable
                 Debug.Log("[DK LOG] -> cant do anything in this state");
                 break;
         }
+    }
+
+    private void HandlePlayerSitting(Player player)
+    {
+        player.ChangeState(States.Sitting);
+    }
+
+    private void HandleChairPushing()
+    {
+        chair.Play("PushChaire");
+        currentState = DrawState.Push;
+        CoroutineUtility.InvokeAfter(
+            () =>
+            {
+                currentState = DrawState.Closed;
+            }, .5f);
     }
 }
