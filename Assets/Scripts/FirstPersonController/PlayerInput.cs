@@ -90,6 +90,13 @@ namespace babbarversestudios
         #region Rotation
         public void Rotating()
         {
+            if (player.IsInState(States.Sitting))
+            {
+                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+                mCamera.transform.localRotation = Quaternion.identity;
+                return;
+            }
+                
             //responsible for the camera movement up/down
             float mouseY = lookAmt.y * rotateSpeed * Time.deltaTime;
             xRotation -= mouseY;
