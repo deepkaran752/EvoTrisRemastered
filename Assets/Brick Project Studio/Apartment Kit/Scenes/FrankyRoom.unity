@@ -128494,6 +128494,7 @@ GameObject:
   - component: {fileID: 1927095933433884259}
   - component: {fileID: 1927095933433884258}
   - component: {fileID: 1927095933433884260}
+  - component: {fileID: 1927095933433884261}
   m_Layer: 0
   m_Name: First Person Player
   m_TagString: Player
@@ -128533,8 +128534,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   InputAction: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   mCamera: {fileID: 1927095933462261987}
-  walkSpeed: 3.8
-  rotateSpeed: 8.8
 --- !u!136 &1927095933433884258
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -128596,6 +128595,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   carryingPoint: {fileID: 1358404025}
+--- !u!114 &1927095933433884261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1927095933433884254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6015321912725b843aa68182b549ddd2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!81 &1927095933462261986
 AudioListener:
   m_ObjectHideFlags: 0
