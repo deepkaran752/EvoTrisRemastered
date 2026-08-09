@@ -36,7 +36,8 @@ public class GrabObject : MonoBehaviour, ICarry, IInteractable
     public void Interact(GameObject whoFired = null)
     {
         if (!isBoxEmpty) return; //if the box is not empty return
-
+        if (whoFired.GetComponent<Player>().IsInState(States.Sitting)) //cannot grab object in sitting player state
+            return;
         Carry(whoFired?.GetComponent<PlayerCarry>());
     }
 

@@ -8,7 +8,10 @@ namespace babbarversestudios
         #region Serialize Fields
         [SerializeField] InputActionAsset InputAction;
         [SerializeField] Camera mCamera;
+        #endregion
+        #region Player Components
         PlayerCarry playerCarry;
+        Player player;
         #endregion
 
         #region InputActions
@@ -57,20 +60,18 @@ namespace babbarversestudios
             interactAction = InputSystem.actions.FindAction("Interact");
             mController = this.GetComponent<CharacterController>();
             playerCarry = this.GetComponent<PlayerCarry>();
+            player = this.GetComponent<Player>();
         }
 
         private void Update()
         {
             moveAmt = moveAction.ReadValue<Vector2>();
             lookAmt = lookAction.ReadValue<Vector2>();
-
-            Rotating();
-            Walking();
         }
         #endregion
 
         #region Walking
-        private void Walking()
+        public void Walking()
         {
             Vector3 moveDirection =
                        transform.forward * moveAmt.y +
@@ -87,7 +88,7 @@ namespace babbarversestudios
         }
         #endregion
         #region Rotation
-        private void Rotating()
+        public void Rotating()
         {
             //responsible for the camera movement up/down
             float mouseY = lookAmt.y * rotateSpeed * Time.deltaTime;
@@ -101,8 +102,15 @@ namespace babbarversestudios
         }
         #endregion
         #region Interact
-        private void Interact(InputAction.CallbackContext context)
+        public void Interact(InputAction.CallbackContext context)
         {
+            //this means, the player was sitting, before interacting, change the state to free and return;
+            if (player.IsInState(States.Sitting))
+            {
+                player.ChangeState(States.Free);
+                return;
+            }
+
             //if the player is carrying something, drop it first before interacting.
             if (playerCarry.IsCarrying)
             {

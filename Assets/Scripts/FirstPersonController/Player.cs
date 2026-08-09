@@ -15,12 +15,15 @@ public class Player : MonoBehaviour
         ChangeState(States.Free);
     }
 
-    public void ChangeState(States states)
+    private void Update() =>
+        stateMachine.Update();
+
+    public void ChangeState(States states, Transform sittingObjPosition = null)
     {
         switch (states)
         {
             case States.Sitting:
-                var sitState = new PlayerSittingState(this);
+                var sitState = new PlayerSittingState(this, sittingObjPosition);
                 stateMachine.ChangeState(sitState);
                 CurrentState = sitState;
                 break;

@@ -6,6 +6,8 @@ public class DrawChair : MonoBehaviour, IInteractable
     public Animator chair;
     private DrawState currentState;
 
+    [SerializeField] Transform sitPoint;
+
     void Start() =>
         currentState = DrawState.Closed;
 
@@ -45,7 +47,7 @@ public class DrawChair : MonoBehaviour, IInteractable
 
     private void HandlePlayerSitting(Player player)
     {
-        player.ChangeState(States.Sitting);
+        player.ChangeState(States.Sitting, sitPoint);
     }
 
     private void HandleChairPushing()
