@@ -6,7 +6,6 @@ namespace babbarversestudios
     public class PlayerInput : MonoBehaviour
     {
         #region Serialize Fields
-        [SerializeField] InputActionAsset InputAction;
         [SerializeField] Camera mCamera;
         #endregion
         #region Player Components
@@ -43,24 +42,32 @@ namespace babbarversestudios
         #region Unity life cycle
         private void OnEnable()
         {
-            InputAction.FindActionMap("Player").Enable();
             interactAction.performed += Interact;
         }
 
         private void OnDisable()
         {
-            InputAction.FindActionMap("Player").Disable();
             interactAction.performed -= Interact;
         }
 
         private void Awake()
         {
-            moveAction = InputSystem.actions.FindAction("Move");
-            lookAction = InputSystem.actions.FindAction("Look");
-            interactAction = InputSystem.actions.FindAction("Interact");
+            moveAction = InputManager.Instance.RegisterAction("Move");
+            lookAction = InputManager.Instance.RegisterAction("Look");
+            interactAction = InputManager.Instance.RegisterAction("Interact");
             mController = this.GetComponent<CharacterController>();
             playerCarry = this.GetComponent<PlayerCarry>();
             player = this.GetComponent<Player>();
+
+            //handling the OS Cursor Here
+            Cursor.visible = false;
+        }
+
+        private void OnDestroy()
+        {
+            InputManager.Instance.DeregisterAction("Move");
+            InputManager.Instance.DeregisterAction("Look");
+            InputManager.Instance.DeregisterAction("Interact");
         }
 
         private void Update()
@@ -89,14 +96,7 @@ namespace babbarversestudios
         #endregion
         #region Rotation
         public void Rotating()
-        {
-            if (player.IsInState(States.Sitting))
-            {
-                transform.rotation = Quaternion.Euler(0f, 180f, 0f);
-                mCamera.transform.localRotation = Quaternion.identity;
-                return;
-            }
-                
+        {    
             //responsible for the camera movement up/down
             float mouseY = lookAmt.y * rotateSpeed * Time.deltaTime;
             xRotation -= mouseY;
@@ -106,6 +106,12 @@ namespace babbarversestudios
             //repsonsible for the horizontal player movement
             float rotationAmount = lookAmt.x * rotateSpeed * Time.deltaTime;
             transform.Rotate(0, rotationAmount, 0);
+        }
+
+        public void TurnTowardsComputer()
+        {
+            transform.rotation = Quaternion.Euler(0f, 180f, 0f);
+            mCamera.transform.localRotation = Quaternion.identity;
         }
         #endregion
         #region CameraTweaks
