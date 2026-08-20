@@ -21,6 +21,7 @@ public class PlayerSittingState : PlayerState
         //Cannot move and rotate
         player.gameObject.transform.position = whereToSit.position + new Vector3(0f, 0f, 0f);
         player.GetComponent<PlayerInput>().ChangeFieldOfView(zoomedInValue); //changing for better apps vis
+        player.GetComponent<PlayerInput>().TurnTowardsComputer();
         Debug.Log("[DK LOG] -> entered the sitting state");
     }
 
@@ -33,6 +34,5 @@ public class PlayerSittingState : PlayerState
 
     public override void Execute()
     {
-        player.GetComponent<PlayerInput>().Rotating();
     }
 }

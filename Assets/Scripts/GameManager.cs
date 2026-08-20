@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] Camera mCamera;
     #region References
     private ObjectiveManager objectiveManager;
     public ComputerSetup computerSetup; //required for some stuff
@@ -42,5 +43,10 @@ public class GameManager : MonoBehaviour
     private void CurrentObjectiveCompleted()
     {
         objectiveManager.RequestToCompleteObjective?.Invoke(objectiveManager.CurrentObjective);
+    }
+
+    public Camera GetCamera()
+    {
+        return mCamera;
     }
 }
