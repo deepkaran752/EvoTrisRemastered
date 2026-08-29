@@ -1,6 +1,6 @@
 using babbarversestudios;
 using UnityEngine;
-
+using babbarversecheats;
 public class GrabAndDrop : MonoBehaviour, IInteractable
 {
     [SerializeField] private ComputerParts currentPart;
@@ -15,6 +15,9 @@ public class GrabAndDrop : MonoBehaviour, IInteractable
 
     private void OnEnable()
     {
+        if (CheatSettings.CompleteObjective)
+            PartSet?.Invoke();
+
         PartSet += OnPartSet;
     }
 
@@ -43,7 +46,7 @@ public class GrabAndDrop : MonoBehaviour, IInteractable
 
     private void OnPartSet()
     {
-        if(count >= 5)
+        if(count >= 5 || CheatSettings.CompleteObjective)
             Setup.TurnOnMonitor?.Invoke();
     }
 }
