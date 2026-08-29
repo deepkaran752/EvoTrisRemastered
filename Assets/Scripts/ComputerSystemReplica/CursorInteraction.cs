@@ -4,7 +4,7 @@ namespace babbarversestudios {
     /// <summary>
     /// Responsible for cusor interaction
     /// </summary>
-    public class CursorInteraction : MonoBehaviour
+    public partial class CursorInteraction : MonoBehaviour
     {
         #region Private Cursor vars
         private GameObject m_cursor;
@@ -46,12 +46,20 @@ namespace babbarversestudios {
             cursorMovement = InputManager.Instance.RegisterAction("CursorMovement");
             cursorMovement.performed += CursorMovement;
             cursorMovement.canceled += CursorMovement;
+
+            //for Clicking the cursor
+            clickAction = InputManager.Instance.RegisterAction("Click");
+            clickAction.performed += OnClick;
         }
         private void OnDisable()
         {
             cursorMovement.performed -= CursorMovement;
             cursorMovement.canceled -= CursorMovement;
             InputManager.Instance.DeregisterAction("CursorMovement");
+
+            //for clicks
+            clickAction.performed -= OnClick;
+            InputManager.Instance.DeregisterAction("Click");
         }
         #endregion
 
@@ -126,7 +134,7 @@ namespace babbarversestudios {
             float xCursor = cursorTravelDistance.x;
             gamepadCursorPosition += new Vector3(xCursor * HorizontalSensitivity, cursorTravelDistance.y * VerticalSensitivity, 0) * (inputSpeed * Time.unscaledDeltaTime);
             
-            float minX = bound.center.x - bound.size.x * 0.5f;
+            float minX = bound.center.x - bound.size.x * 0.5f; //to bring the cursor from worldspace to local space
             float maxX = bound.center.x + bound.size.x * 0.5f;
 
             float minY = bound.center.y - bound.size.y * 0.5f;
