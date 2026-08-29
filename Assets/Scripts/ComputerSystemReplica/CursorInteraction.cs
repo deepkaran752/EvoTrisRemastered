@@ -86,6 +86,8 @@ namespace babbarversestudios {
         /// <param name="ctx"></param>
         public void CursorMovement(InputAction.CallbackContext ctx)
         {
+            if (!InputManager.CanAccessCursor) return;
+
             InputDevice device = ctx.control?.device;
             InputManager.IsUsingGamepad = device is Gamepad;
 
@@ -98,6 +100,9 @@ namespace babbarversestudios {
 
         private bool TryHitComputer()
         {
+            if (!InputManager.CanAccessCursor) 
+                return false;
+
             Ray ray = m_Camera.ScreenPointToRay(Input.mousePosition);
             return bound.Raycast(ray, out mCursorHitPoint, Mathf.Infinity); //checking from the box collider
         }

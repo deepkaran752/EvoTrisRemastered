@@ -12,10 +12,17 @@ namespace babbarversestudios
 
         private Dictionary<string, InputAction> registeredActions = new();
         private bool isUsingGamepad;
+        private bool canAccessCursor = false;
 
         public static bool IsUsingGamepad {
             get { return Instance.isUsingGamepad; }
             set { Instance.isUsingGamepad = value; }
+        }
+
+        public static bool CanAccessCursor
+        {
+            get { return Instance.canAccessCursor; }
+            set { Instance.canAccessCursor = value; }
         }
 
         private void Awake()

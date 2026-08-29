@@ -14,6 +14,7 @@ public class PlayerFreeState : PlayerState
     public override void Enter()
     {
         Debug.Log("[DK LOG] -> entered the free state");
+        player.GetComponent<PlayerInput>().AllowCursor(false);
     }
 
     public override void Exit()

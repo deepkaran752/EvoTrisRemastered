@@ -141,5 +141,8 @@ namespace babbarversestudios
             }
         }
         #endregion
+        #region CursorInteractionBool
+        public void AllowCursor(bool value) => InputManager.CanAccessCursor = value;
+        #endregion
     }
 }

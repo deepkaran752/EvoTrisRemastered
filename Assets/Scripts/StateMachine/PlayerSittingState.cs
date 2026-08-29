@@ -22,6 +22,7 @@ public class PlayerSittingState : PlayerState
         player.gameObject.transform.position = whereToSit.position + new Vector3(0f, 0f, 0f);
         player.GetComponent<PlayerInput>().ChangeFieldOfView(zoomedInValue); //changing for better apps vis
         player.GetComponent<PlayerInput>().TurnTowardsComputer();
+        player.GetComponent<PlayerInput>().AllowCursor(true);
         Debug.Log("[DK LOG] -> entered the sitting state");
     }
 
@@ -30,6 +31,7 @@ public class PlayerSittingState : PlayerState
         //can move again
         Debug.Log("[DK LOG] -> exited the sitting state");
         player.GetComponent<PlayerInput>().ChangeFieldOfView(zoomedOutValue); //changing to the default one.
+        player.GetComponent<PlayerInput>().AllowCursor(false);
     }
 
     public override void Execute()
