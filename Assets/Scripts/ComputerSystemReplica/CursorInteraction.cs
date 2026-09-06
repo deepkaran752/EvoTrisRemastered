@@ -78,6 +78,8 @@ namespace babbarversestudios {
                 if (TryHitComputer())
                     FollowMousePointer();
             }
+
+            UpdatePointerHover();
         }
 
         /// <summary>

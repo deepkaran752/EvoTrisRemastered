@@ -20,7 +20,7 @@ namespace babbarversestudios
             Debug.Log("[Dk Log] Clicked");
             if (!ctx.performed) return;
 
-            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(GameManager.Instance.GetCamera(), m_cursor.transform.position);
+            Vector2 screenPosition = RectTransformUtility.WorldToScreenPoint(m_Camera, m_cursor.transform.position);
 
             PointerEventData pointerData = new(EventSystem.current)
             {
