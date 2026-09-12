@@ -49,7 +49,14 @@ namespace babbarversestudios {
 
             //for Clicking the cursor
             clickAction = InputManager.Instance.RegisterAction("Click");
+            clickAction.started += OnClickStarted;
             clickAction.performed += OnClick;
+            clickAction.canceled += OnClickCanceled;
+
+            //for changing the slider value, gamepad only 
+            sliderValueAction = InputManager.Instance.RegisterAction("SliderControl");
+            sliderValueAction.performed += OnDragStarted;
+            sliderValueAction.canceled += OnDragReset;
         }
         private void OnDisable()
         {
@@ -58,8 +65,15 @@ namespace babbarversestudios {
             InputManager.Instance.DeregisterAction("CursorMovement");
 
             //for clicks
+            clickAction.started -= OnClickStarted;
             clickAction.performed -= OnClick;
+            clickAction.canceled -= OnClickCanceled;
             InputManager.Instance.DeregisterAction("Click");
+
+            //for changing the slider value, gamepad only
+            sliderValueAction.performed -= OnDragStarted;
+            sliderValueAction.canceled -= OnDragReset;
+            InputManager.Instance.DeregisterAction("SliderControl");
         }
         #endregion
 
@@ -80,6 +94,7 @@ namespace babbarversestudios {
             }
 
             UpdatePointerHover();
+            //UpdateDrag();
         }
 
         /// <summary>
