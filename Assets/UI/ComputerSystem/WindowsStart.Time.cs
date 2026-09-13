@@ -3,6 +3,8 @@ namespace babbarversestudios
 {
     public partial class WindowsStart : MonoBehaviour
     {
+        [Space]
+        [Header("Time/Data")]
         [SerializeField] TMPro.TMP_Text timeRealtime;
         [SerializeField] TMPro.TMP_Text timeRealtimeHome;
         [SerializeField] TMPro.TMP_Text dateRealtimeHome;

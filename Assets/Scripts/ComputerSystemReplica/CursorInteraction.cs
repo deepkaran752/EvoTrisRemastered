@@ -23,6 +23,7 @@ namespace babbarversestudios {
         [SerializeField] private float HorizontalSensitivity = 1f;
         [SerializeField] private float VerticalSensitivity = 1f;
         [SerializeField] private float inputSpeed = 1f;
+        [SerializeField] private Vector2 cursorPivot = new(0.09f, 0.96f);
         #endregion
         #region InputAction for cursor movement
         InputAction cursorMovement;

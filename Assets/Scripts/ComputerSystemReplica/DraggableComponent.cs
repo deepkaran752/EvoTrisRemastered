@@ -14,7 +14,7 @@ namespace babbarversestudios
         public void OnDragBegin(float value)
         {
             if (m_Slider)
-                m_Slider.value += value * sliderFillSpeed * Time.deltaTime;
+                m_Slider.value += value * sliderFillSpeed;
         }
 
         public void OnDragReset()

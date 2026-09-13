@@ -25,8 +25,11 @@ namespace babbarversestudios
         /// <param name="ctx"></param>
         private void OnClick(InputAction.CallbackContext ctx)
         {
-            Debug.Log("[Dk Log] Clicked");
             if (!ctx.performed) return;
+            if (!InputManager.CanAccessCursor) return;
+            if (!InputManager.IsUsingGamepad) return;
+
+            Debug.Log("[Dk Log] Clicked");
 
             var (raycastResults, pointerData, result) = GetValuesTuple(out bool isAnyButton, out _);
             if (isAnyButton)
@@ -38,8 +41,11 @@ namespace babbarversestudios
 
         private void OnClickStarted(InputAction.CallbackContext ctx)
         {
-            Debug.Log("[Dk Log] Clicked Started");
             if (!ctx.started) return;
+            if (!InputManager.CanAccessCursor) return; //shouldn't start if we can't access cursor
+            if (!InputManager.IsUsingGamepad) return;
+            Debug.Log("[Dk Log] Clicked Started");
+
             var (_, pointerData, result) = GetValuesTuple(out bool isAnyButton, out bool isSlider);
 
             if (isSlider)
@@ -51,17 +57,20 @@ namespace babbarversestudios
                 
                 return;
             }
-            if (isAnyButton)
-                ExecuteEvents.Execute(result, 
-                    pointerData, 
-                    ExecuteEvents.pointerDownHandler
-                );
+            //if (isAnyButton)
+            //    ExecuteEvents.Execute(result,
+            //        pointerData,
+            //        ExecuteEvents.pointerDownHandler
+            //    );
         }
 
         private void OnClickCanceled(InputAction.CallbackContext ctx)
         {
-            Debug.Log("[DK LOG] Click Canceled");
             if (!ctx.canceled) return;
+            if (!InputManager.CanAccessCursor) return;
+            if (!InputManager.IsUsingGamepad) return;
+            Debug.Log("[DK LOG] Click Canceled");
+
             var (_, pointerData, result) = GetValuesTuple(out bool isAnyButton, out bool isSlider);
 
             if (m_Draggable != null)
@@ -71,8 +80,8 @@ namespace babbarversestudios
                 m_PointerData = null;
                 return;
             }
-            if (isAnyButton)
-                ExecuteEvents.Execute(result, pointerData, ExecuteEvents.pointerUpHandler);
+            //if (isAnyButton)
+            //    ExecuteEvents.Execute(result, pointerData, ExecuteEvents.pointerUpHandler);
         }
         #endregion
         #region Drag Related Stuff

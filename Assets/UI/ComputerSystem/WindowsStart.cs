@@ -14,8 +14,12 @@ namespace babbarversestudios
         }
 
         #region Unity Life Cycle
-        private void Start() =>
+        private void Start()
+        {
+            //setting the data
             SetDate();
+            panelObject.SetActive(false); //in the start.
+        }
 
         private void Update()
         {
