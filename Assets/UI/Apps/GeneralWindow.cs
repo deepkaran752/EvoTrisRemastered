@@ -18,6 +18,7 @@ namespace babbarversestudios
 
         public virtual void Open()
         {
+            if (!UIManager.CanAccessCursor) return;
             Debug.Log("[Dk Handler LOG] Opened app");
             UIManager.Instance.RegisterWindow(this);
             this.gameObject.SetActive(true);

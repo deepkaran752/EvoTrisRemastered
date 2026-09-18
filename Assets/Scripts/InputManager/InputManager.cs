@@ -22,7 +22,6 @@ namespace babbarversestudios
         public static bool CanAccessCursor
         {
             get { return Instance.canAccessCursor; }
-            set { Instance.canAccessCursor = value; }
         }
 
         private void Awake()
@@ -35,7 +34,13 @@ namespace babbarversestudios
 
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            AccessCursorValue += CursorValueChange;
         }
+
+        public System.Action<bool> AccessCursorValue;
+
+        public void CursorValueChange(bool value) =>
+            canAccessCursor = value; 
 
         /// <summary>
         /// Registers the input action u want
