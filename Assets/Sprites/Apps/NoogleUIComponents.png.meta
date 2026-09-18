@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b4efb686d3c6d634d9dc6dc54ec176c0
+guid: 937fa0c28e75a944ca4ad94e6a7bc364
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,7 +45,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 1
+  spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -74,7 +74,7 @@ TextureImporter:
     textureFormat: -1
     textureCompression: 1
     compressionQuality: 50
-    crunchedCompression: 1
+    crunchedCompression: 0
     allowsAlphaSplitting: 0
     overridden: 0
     ignorePlatformSupport: 0
@@ -97,13 +97,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Sound_0
+      name: NoogleUIComponents_0
       rect:
         serializedVersion: 2
-        x: 141
-        y: 222
-        width: 354
-        height: 281
+        x: 49
+        y: 46
+        width: 168
+        height: 55
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -112,20 +112,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 4863f3e86e2044b41bdc438bc68a19e2
-      internalID: 1991195187
+      spriteID: 9d49d1c09f2c6e54a900016b1732671a
+      internalID: 1693627055
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sound_1
+      name: NoogleUIComponents_1
       rect:
         serializedVersion: 2
-        x: 658
-        y: 223
-        width: 355
-        height: 283
+        x: 48
+        y: 842
+        width: 339
+        height: 106
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -134,30 +134,30 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6d9202e1d74b4d747a4b922cf055ed77
-      internalID: -1980846609
+      spriteID: 53e4c5ba040f2c746af6c68d4b925ff9
+      internalID: 153489899
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Sound_2
+      name: NoogleUIComponents_2
       rect:
         serializedVersion: 2
-        x: 1144
-        y: 222
-        width: 354
-        height: 283
+        x: 465
+        y: 872
+        width: 638
+        height: 72
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
+      border: {x: 25, y: 26, z: 27, w: 27}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d973c3c7c9377b644b4e11c145ed0982
-      internalID: 614871365
+      spriteID: 381c08f327d55de4f8418c6324d75dec
+      internalID: 1661115524
       vertices: []
       indices: 
       edges: []
@@ -166,7 +166,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 5d5ea6aef7dc52d4a92529ce9df7835e
+    spriteID: 4055631788c8bc54c8d43abf817e19ad
     internalID: 0
     vertices: []
     indices: 
@@ -176,9 +176,9 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      Sound_0: 1991195187
-      Sound_1: -1980846609
-      Sound_2: 614871365
+      NoogleUIComponents_0: 1693627055
+      NoogleUIComponents_1: 153489899
+      NoogleUIComponents_2: 1661115524
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
