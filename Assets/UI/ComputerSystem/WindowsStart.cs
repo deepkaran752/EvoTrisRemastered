@@ -26,6 +26,20 @@ namespace babbarversestudios
             //needs to loop in this
             SetTime();
         }
+
+        #endregion
+        #region Subs/Unsub
+        private void OnEnable()
+        {
+            soundSlider.onValueChanged.AddListener(ListenToSoundSlider);
+            brightnessSlider.onValueChanged.AddListener(ListenToBrightnessSlider);
+        }
+
+        private void OnDisable()
+        {
+            soundSlider.onValueChanged.RemoveListener(ListenToSoundSlider);
+            brightnessSlider.onValueChanged.RemoveListener(ListenToBrightnessSlider);
+        }
         #endregion
     }
 }
